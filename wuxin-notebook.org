@@ -1,0 +1,74 @@
+*  务新科技服务器规划
+
+  |             IP | machine name | descrption              |
+  |----------------+--------------+-------------------------|
+
+  |  192.168.10.70 | yum           |                         |
+  |  192.168.10.71 | lib01         | emacs, c++              |
+  |                |               |                         |
+  | 192.168.10.200 | centos        | template                |
+  |                |               |                         |
+  | 192.168.10.221 | node01.gluu   |                         |
+  | 192.168.10.222 | node02.gluu   |                         |
+  |                |               |                         |
+  | 192.168.10.223 | zeppelin      | zeppelin-0.9.0-preview1 |
+  |                |               |                         |
+  | 192.168.10.226 | node02.solr   |                         |
+  | 192.168.10.225 | node01.solr   |                         |
+  |                |               |                         |
+  | 192.168.10.227 | master.k8s    | master                  |
+  | 192.168.10.228 | node01.k8s    | node01                  |
+  | 192.168.10.229 | node02.k8s    | node02                  |
+  |                |               |                         |
+  | 192.168.10.210 | hadoop-master |                         |
+  | 192.168.10.211 | hadoop-node1  |                         |
+  | 192.168.10.212 | hadoop-node2  |                         |
+
+* What will you learn in this Big Data Hadoop trainning?
+1. Fundamentals of Hadoop and YARN and write applications using them
+2. Setting up pseudo-node and multi-node clusters on Centos7
+3. HDFS, MapReduce, Hive, Pig, Oozie, Sqoop, Flume, ZooKeeper and HBase
+4. Spark, Spark SQL, Streaming, Data Frame, RDD, GraphX and MLlib writing Spark applications
+5. Hadoop administration activities like cluster managing, monitoring, administration and troubleshooting
+6. Configuring ETL tools like Pentaho/Talend to work with MapReduce, Hive, Pig, etc.
+7. Hadoop testing applications using MRUnit and other automation tools
+8. Working with Avro data formats
+9. Practicing real-life projects using Hadoop and Apache Spark
+
+* write mapreduce applications 
+
+* write your own applications to run in a distributed environment through YARN. 
+
+  [[https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/WritingYarnApplications.html][Hadoop: Writing YARN Applications]]
+  
+
+* linux网络命令
+  
+  netstat -lnpt
+* hadoop集群搭建
+  在centos7上按照[[https://www.linode.com/docs/databases/hadoop/how-to-install-and-set-up-hadoop-cluster/][How to Install and Set Up a 3-Node Hadoop Cluster]]操作，其中ssh无密码
+登录没有参考价值。
+
+  按照[[https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html][Pseudo-Distributed Operation]] 执行sbin/start-dfs.sh时，报找不到JAVA_HOME，需要在
+   vim etc/hadoop/hadoop-env.sh配置。
+  
+* Zeppelin
+** download
+  版本： 0.9.0-preview1
+  URL：http://zeppelin.apache.org/docs/0.9.0-preview1/quickstart/install.html
+
+  http://kylin.apache.org/cn/
+
+** install and configuration
+  + vi /etc/profile
+    export ZEPPELIN_HOME=/opt/zeppelin
+    export PATH=$PATH:$ZEPPELIN_HOME/bin
+    export HADOOP_CONF_DIR=/opt/hadoop/etc/Hadoop
+  + cp zeppelin-site.xml.template zeppelin-site.xml
+
+  + cp zeppelin-env.sh.template zeppelin-env.sh
+
+  + vi zeppelin-env.sh
+
+  + 
+    

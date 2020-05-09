@@ -1,0 +1,81 @@
+* Kubernates集群环境搭建
+
+  [[https://kubernetes.io/][kubernetes]]
+
+** 机器
+    |             IP | description |
+    |----------------+-------------|
+    | 192.168.10.227 | master      |
+    | 192.168.10.228 | node01      |
+    | 192.168.10.229 | node02      |
+    |                |             |
+
+
+** 基本环境配置
+   
+   yum install wget git zsh
+   
+   bira
+
+   1. 关闭selinux
+   
+    setenforce 0
+    
+    vim /etc/selinux/config 
+    
+   2. 关闭swap分区或禁用swap文件
+      yes | cp /etc/fstab /etc/fstab_bak
+      cat /etc/fstab_bak |grep -v swap > /etc/fstab
+
+      swapoff -a
+
+   3. 修改网卡配置
+    vim /etc/sysctl.conf
+
+    net.ipv4.ip_forward = 1
+    net.bridge.
+
+    sysctl -p
+
+   4. 启用内核模块
+    vim /etc/sysconfig/modules/ipvs.modules
+
+   5. 关闭防火墙
+    systemctl disable firewalld
+
+   6. 配置hosts
+
+** kubectl、kubeadm、kubelet的安装
+*** 添加Kubenetes的yum源
+
+*** 安装
+   yum install 
+
+*** 启动Kubenetes
+   systemctl enable kubelet
+   systemctl start kubelet
+
+   此时执行systemctl status kubelet 查看服务状态，服务状态为Error(255)
+   如果是其他错误可使用'journalctl -xe'查看错误信息。
+
+** Docker安装
+    [[http:docs.docker.com/engine/install/centos][Docker官网]]
+
+** Docker配置
+*** 配置cgroup-driver为systemd
+   
+   vim /etc/docker/daemon.json
+
+*** 预先拉取所需镜像
+  
+   $ kubeadm config images list
+
+** Master节点的配置
+ 
+  *以上步骤需要在node节点和master节点执行。
+
+  kubeadm token create --print-join-command
+
+  kubectl get pods --all-namespaces
+  
+* Kubernates应用部署方法
